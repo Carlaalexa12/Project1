@@ -10,3 +10,12 @@
       { title: "Inventory Manager", details: "Full-time · Hybrid" }
     ]; %>
     <% jobs.forEach(j => { %>
+        <div class="bg-green-50 p-4 rounded shadow border">
+        <h3 class="text-xl font-semibold"><%= j.title %></h3>
+        <p><%= j.details %></p>
+        <button class="btn btn-outline btn-success mt-2">Apply Now</button>
+      </div>
+    <% }) %>
+  </div>
+</section>
+<%- include('partials/footer') %>
