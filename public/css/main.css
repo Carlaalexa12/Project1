@@ -2147,6 +2147,11 @@ html {
   border-color: rgb(134 239 172 / var(--tw-border-opacity, 1));
 }
 
+.bg-amber-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(120 53 15 / var(--tw-bg-opacity, 1));
+}
+
 .bg-green-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(220 252 231 / var(--tw-bg-opacity, 1));
