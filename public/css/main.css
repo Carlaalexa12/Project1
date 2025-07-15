@@ -2018,6 +2018,10 @@ html {
   width: 300px;
 }
 
+.w-\[350px\] {
+  width: 350px;
+}
+
 .w-full {
   width: 100%;
 }
@@ -2154,11 +2158,6 @@ html {
 .bg-amber-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(120 53 15 / var(--tw-bg-opacity, 1));
-}
-
-.bg-coffee-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(205 168 151 / var(--tw-bg-opacity, 1));
 }
 
 .bg-green-100 {
