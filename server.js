@@ -28,5 +28,5 @@ app.get('/contact', (req, res) => res.render('contact'));
 
 app.get('/career', (req, res) => res.render('career'));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
