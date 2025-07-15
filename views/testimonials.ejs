@@ -10,3 +10,12 @@
       { text: "Friendly team and delicious meals.", name: "George A." },
       { text: "Love the cozy packaging and care.", name: "Sophia N." },
     ]; %>
+    <% testimonials.forEach(t => { %>
+      <div class="bg-beige-100 p-6 rounded shadow-md border border-green-200">
+        <p class="italic text-gray-700">"<%= t.text %>"</p>
+        <p class="mt-4 font-semibold text-green-800">– <%= t.name %></p>
+      </div>
+    <% }) %>
+  </div>
+</section>
+<%- include('partials/footer') %>
