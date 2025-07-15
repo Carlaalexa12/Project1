@@ -1,0 +1,12 @@
+<%- include('partials/header', { title: 'Join Our Team' }) %>
+<section class="space-y-10">
+  <h2 class="text-3xl font-bold text-green-900">Open Positions</h2>
+  <div class="grid md:grid-cols-2 gap-6">
+    <% const jobs = [
+      { title: "Kitchen Assistant", details: "Full-time · On-site · Starts ASAP" },
+      { title: "Delivery Coordinator", details: "Part-time · Remote" },
+      { title: "Customer Service Rep", details: "Full-time · Flexible Shifts" },
+      { title: "Marketing Intern", details: "Remote · 6-month contract" },
+      { title: "Inventory Manager", details: "Full-time · Hybrid" }
+    ]; %>
+    <% jobs.forEach(j => { %>
