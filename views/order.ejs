@@ -1,0 +1,13 @@
+<%- include('partials/header', { title: 'Order Online' }) %>
+<section class="grid md:grid-cols-2 gap-10 items-start">
+  <form class="bg-green-50 p-6 rounded shadow space-y-4">
+    <input type="text" placeholder="Full Name" class="input input-bordered w-full" />
+    <input type="text" placeholder="Delivery Address" class="input input-bordered w-full" />
+    <select class="select select-bordered w-full">
+      <option disabled selected>Select Meal</option>
+      <option>Green Buddha Bowl</option>
+      <option>Vegan Pasta</option>
+      <option>Quinoa Salad</option>
+      <option>Sweet Potato Wrap</option>
+      <option>Chickpea Curry</option>
+    </select>
