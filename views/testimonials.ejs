@@ -1,21 +1,19 @@
 <%- include('partials/header', { title: 'Testimonials' }) %>
-<section class="space-y-8">
-  <h2 class="text-3xl font-bold text-green-900 mb-6 text-center">Customer Love</h2>
-  <div class="grid md:grid-cols-3 gap-6">
-    <% const testimonials = [
-      { text: "The best vegan wrap I've ever had.", name: "Elena M." },
-      { text: "Fast, fresh, and fabulous!", name: "Mark T." },
-      { text: "They make healthy food feel like a treat!", name: "Ravi S." },
-      { text: "Beautiful portions and super tasty.", name: "Linda F." },
-      { text: "Friendly team and delicious meals.", name: "George A." },
-      { text: "Love the cozy packaging and care.", name: "Sophia N." },
-    ]; %>
-    <% testimonials.forEach(t => { %>
-      <div class="bg-beige-100 p-6 rounded shadow-md border border-green-200">
-        <p class="italic text-gray-700">"<%= t.text %>"</p>
-        <p class="mt-4 font-semibold text-green-800">– <%= t.name %></p>
-      </div>
-    <% }) %>
-  </div>
-</section>
-<%- include('partials/footer') %>
+  <section class="space-y-8">
+    <h2 class="text-3xl font-bold text-green-900 mb-6 text-center">Customer Love</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <% const testimonials=[ { text: "The best coffee I've ever had." , name: "Elena M." }, {
+        text: "Fast, fresh, and fabulous!" , name: "Mark T." }, { text: "They make healthy food feel like a treat!" ,
+        name: "Ravi S." }, { text: "Beautiful portions and super tasty." , name: "Linda F." }, {
+        text: "Friendly team and delicious meals." , name: "George A." }, { text: "Love the cozy packaging and care." ,
+        name: "Sophia N." }, ]; %>
+        <% testimonials.forEach(t=> { %>
+          <div class="bg-beige-100 p-6 rounded shadow-md border border-green-200">
+            <p class="italic text-gray-700">"<%= t.text %>"</p>
+            <p class="mt-4 font-semibold text-green-800">– <%= t.name %>
+            </p>
+          </div>
+          <% }) %>
+    </div>
+  </section>
+  <%- include('partials/footer') %>
