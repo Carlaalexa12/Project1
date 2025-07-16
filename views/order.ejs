@@ -1,5 +1,7 @@
 <%- include('partials/header', { title: 'Order Online' }) %>
   <section class="grid md:grid-cols-2 gap-10 items-start">
+    <div class="space-y-4">
+  <h2 class="text-3xl font-bold text-green-850">Order Online</h2>
     <form class="bg-green-50 p-6 rounded shadow space-y-4">
       <input type="text" placeholder="Full Name" class="input input-bordered w-full" />
       <input type="text" placeholder="Delivery Address" class="input input-bordered w-full" />
@@ -27,7 +29,9 @@
       <input type="number" placeholder="Quantity" class="input input-bordered w-full" />
       <button class="btn btn-success w-full">Place Order</button>
     </form>
-
-    <img src="/images/order.jpg" alt="Order Meal" class="rounded-lg w-5/6">
+  </div>
+    <div class="h-full">
+    <img src="https://images.unsplash.com/photo-1540713434306-58505cf1b6fc?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Order Meal" class="rounded-lg w-4/5 h-3/4 object-cover">
+    </div>
   </section>
   <%- include('partials/footer') %>
