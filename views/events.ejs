@@ -1,51 +1,45 @@
 <%- include('partials/header', { title: 'Events' }) %>
 
-    <section class="bg-beige-50 py-8 px-4">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-green-900 mb-4">Upcoming Events at GreenCoffee</h2>
-            <p class="text-green-800 text-lg">From coffee brewing workshops to chocolate making classes, and cozy book
-                pairings, there's always something brewing at GreenCoffee.</p><br />
-        </div>
+    <section class="space-y-6">
+        <h2 class="text-3xl font-bold text-center text-green-900">Upcoming Events at GreenCoffee</h2>
+        <p class="text-green-800 text-center text-lg">
+            From coffee brewing workshops to chocolate making classes, and cozy book pairings, there's always something
+            brewing at GreenCoffee.
+        </p>
 
-        <div class="grid md:grid-cols-2 gap-8">
-            <!-- Event 1 -->
-            <div class="bg-green-100 p-6 rounded-xl shadow">
-                <h3 class="text-2xl font-semibold text-green-900 mb-2">Coffee Brewing Workshop</h3>
-                <p class="text-green-800">Learn the secrets of perfect coffee brewing from our expert baristas.</p>
-                <p class="text-green-700 mt-2">Saturday, August 14, 2025<br>10:00 AM – 12:00 PM</p>
-                <p class="text-green-700">123 Queen Street West, Toronto</p>
-                <button class="mt-4 btn btn-sm btn-outline btn-success">Join Now</button>
-            </div>
+        <% const events=[ { title: "Coffee Brewing Workshop" ,
+            description: "Learn the secrets of perfect coffee brewing from our expert baristas." ,
+            date: "Saturday, August 14, 2025" , time: "10:00 AM – 12:00 PM" , location: "123 Queen Street West, Toronto"
+            }, { title: "Chocolate Making Class" ,
+            description: "Discover how to craft delicious handmade chocolates from scratch." ,
+            date: "Wednesday, August 25, 2025" , time: "6:00 PM – 8:00 PM" , location: "45 Augusta Avenue, Toronto" }, {
+            title: "Latte Art Workshop" ,
+            description: "Master the art of creating beautiful latte designs with our friendly baristas." ,
+            date: "Sunday, September 6, 2025" , time: "11:00 AM – 1:00 PM" , location: "123 Queen Street West, Toronto"
+            }, { title: "Coffee & Book Pairing" ,
+            description: "Experience unique coffee flavors paired with great reads in a relaxed setting." ,
+            date: "Friday, September 18, 2025" , time: "5:30 PM – 7:00 PM" , location: "Both Locations" } ]; %>
 
-            <!-- Event 2 -->
-            <div class="bg-green-100 p-6 rounded-xl shadow">
-                <h3 class="text-2xl font-semibold text-green-900 mb-2">Chocolate Making Class</h3>
-                <p class="text-green-800">Discover how to craft delicious handmade chocolates from scratch.</p>
-                <p class="text-green-700 mt-2">Wednesday, August 25, 2025<br>6:00 PM – 8:00 PM</p>
-                <p class="text-green-700">45 Augusta Avenue, Toronto</p>
-                <button class="mt-4 btn btn-sm btn-outline btn-success">Join Now</button>
+            <div class="grid md:grid-cols-2 gap-8">
+                <% events.forEach(event=> { %>
+                    <div class="bg-green-100 p-6 rounded-xl shadow">
+                        <h3 class="text-2xl font-semibold text-green-900 mb-2">
+                            <%= event.title %>
+                        </h3>
+                        <p class="text-green-800">
+                            <%= event.description %>
+                        </p>
+                        <p class="text-green-700 mt-2">
+                            <%= event.date %><br>
+                                <%= event.time %>
+                        </p>
+                        <p class="text-green-700">
+                            <%= event.location %>
+                        </p>
+                        <button class="mt-4 btn btn-sm btn-outline btn-success">Join Now</button>
+                    </div>
+                    <% }) %>
             </div>
-
-            <!-- Event 3 -->
-            <div class="bg-green-100 p-6 rounded-xl shadow">
-                <h3 class="text-2xl font-semibold text-green-900 mb-2">Latte Art Workshop</h3>
-                <p class="text-green-800">Master the art of creating beautiful latte designs with our friendly baristas.
-                </p>
-                <p class="text-green-700 mt-2">Sunday, September 6, 2025<br>11:00 AM – 1:00 PM</p>
-                <p class="text-green-700">123 Queen Street West, Toronto</p>
-                <button class="mt-4 btn btn-sm btn-outline btn-success">Join Now</button>
-            </div>
-
-            <!-- Event 4 -->
-            <div class="bg-green-100 p-6 rounded-xl shadow">
-                <h3 class="text-2xl font-semibold text-green-900 mb-2">Coffee & Book Pairing</h3>
-                <p class="text-green-800">Experience unique coffee flavors paired with great reads in a relaxed setting.
-                </p>
-                <p class="text-green-700 mt-2">Friday, September 18, 2025<br>5:30 PM – 7:00 PM</p>
-                <p class="text-green-700">Both Locations</p>
-                <button class="mt-4 btn btn-sm btn-outline btn-success">Join Now</button>
-            </div>
-        </div>
     </section>
 
     <%- include('partials/footer') %>
