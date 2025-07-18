@@ -28,5 +28,26 @@ app.get('/contact', (req, res) => res.render('contact'));
 
 app.get('/career', (req, res) => res.render('career'));
 
+
+app.post('/order', (req, res) => {
+  const { name, address, coffee, tea, pastry, quantity } = req.body;
+  res.render('order', {
+    title: 'Order Online',
+    orderSuccess: true,
+    orderData: { name, address, coffee, tea, pastry, quantity }
+  });
+});
+
+
+app.post('/contact', (req, res) => {
+  const { name, email, message } = req.body;
+  res.render('contact', {
+    title: 'Contact',
+    contactSuccess: true,
+    contactData: { name, email, message }
+  });
+});
+
+
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
