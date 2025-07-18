@@ -1,53 +1,56 @@
 const express = require('express');
-const path = require('path');
 const app = express();
+const path = require('path');
 
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.urlencoded({ extended: true }));
 
 
-app.get('/', (req, res) => res.render('home', { title: 'Home' }));
+app.get('/', (req, res) => {
+  res.render('home');
+});
 
-app.get('/about', (req, res) => res.render('about'));
 
-app.get('/blog', (req, res) => res.render('blog', { title: 'Blog' }));
+app.get('/about', (req, res) => {
+  res.render('about');
+});
 
-app.get('/menu', (req, res) => res.render('menu', { title: 'Menu' }));
 
-app.get('/order', (req, res) => res.render('order'));
-
-app.get('/locations', (req, res) => res.render('locations', { title: 'Locations' }));
-
-app.get('/testimonials', (req, res) => res.render('testimonials'));
-
-app.get('/events', (req, res) => res.render('events', { title: 'Events' }));
-
-app.get('/contact', (req, res) => res.render('contact'));
-
-app.get('/career', (req, res) => res.render('career'));
+app.get('/order', (req, res) => {
+  res.render('order', { orderSuccess: false, orderData: null });
+});
 
 
 app.post('/order', (req, res) => {
-  const { name, address, coffee, tea, pastry, quantity } = req.body;
-  res.render('order', {
-    title: 'Order Online',
-    orderSuccess: true,
-    orderData: { name, address, coffee, tea, pastry, quantity }
-  });
+  const { name, quantity } = req.body;
+  const orderData = { name, quantity };
+  res.render('order', { orderSuccess: true, orderData });
+});
+
+
+app.get('/contact', (req, res) => {
+  res.render('contact', { contactSuccess: false, contactData: null });
 });
 
 
 app.post('/contact', (req, res) => {
-  const { name, email, message } = req.body;
-  res.render('contact', {
-    title: 'Contact',
-    contactSuccess: true,
-    contactData: { name, email, message }
-  });
+  const { name, message } = req.body;
+  const contactData = { name, message };
+  res.render('contact', { contactSuccess: true, contactData });
 });
 
 
+app.get('/career', (req, res) => {
+  res.render('career');
+});
+
+app.get('/testimonials', (req, res) => {
+  res.render('testimonials');
+});
+
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});

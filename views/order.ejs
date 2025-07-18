@@ -1,37 +1,50 @@
 <%- include('partials/header', { title: 'Order Online' }) %>
-  <section class="grid md:grid-cols-2 gap-10 items-start">
-    <div class="space-y-4">
-  <h2 class="text-3xl font-bold text-green-850">Order Online</h2>
-    <form class="bg-green-50 p-6 rounded shadow space-y-4">
-      <input type="text" placeholder="Full Name" class="input input-bordered w-full" />
-      <input type="text" placeholder="Delivery Address" class="input input-bordered w-full" />
-      <select class="select select-bordered w-full">
+<section class="grid md:grid-cols-2 gap-10 items-start">
+  <div class="space-y-4">
+    <h2 class="text-3xl font-bold text-green-850">Order Online</h2>
+
+<% if (orderSuccess && orderData) { %>
+  <div class="bg-green-100 border border-green-600 text-green-800 p-4 rounded my-4">
+    Thank you <strong><%= orderData.name %></strong>, your order for <strong><%= orderData.quantity %></strong> item(s) has been received!
+  </div>
+<% } %>
+
+    <form class="bg-green-50 p-6 rounded shadow space-y-4" method="POST">
+      <input type="text" name="name" placeholder="Full Name" class="input input-bordered w-full" required />
+      <input type="text" name="address" placeholder="Delivery Address" class="input input-bordered w-full" required />
+
+      <select name="coffee" class="select select-bordered w-full" required>
         <option disabled selected>Select Coffee</option>
         <option>Espresso</option>
         <option>Oat Milk Latte</option>
         <option>Iced Americano</option>
         <option>Cappuccino</option>
       </select>
-      <select class="select select-bordered w-full">
+
+      <select name="tea" class="select select-bordered w-full">
         <option disabled selected>Select Tea</option>
         <option>Jasmine Green Tea</option>
         <option>Chai Latte</option>
         <option>Turmeric Ginger Tea</option>
         <option>Hibiscus Iced Tea</option>
       </select>
-      <select class="select select-bordered w-full">
+
+      <select name="pastry" class="select select-bordered w-full">
         <option disabled selected>Select Pastries</option>
         <option>Almond Croissant</option>
         <option>Vegan Banana Bread</option>
         <option>Chocolate Chip Muffin</option>
         <option>Cinnamon Swirl Roll</option>
       </select>
-      <input type="number" placeholder="Quantity" class="input input-bordered w-full" />
+
+      <input type="number" name="quantity" placeholder="Quantity" class="input input-bordered w-full" required />
+
       <button class="btn btn-success w-full">Place Order</button>
     </form>
   </div>
-    <div class="h-full">
+
+  <div class="h-full">
     <img src="https://images.unsplash.com/photo-1540713434306-58505cf1b6fc?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Order Meal" class="rounded-lg w-4/5 h-3/4 object-cover">
-    </div>
-  </section>
-  <%- include('partials/footer') %>
+  </div>
+</section>
+<%- include('partials/footer') %>

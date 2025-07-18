@@ -1,26 +1,35 @@
 <%- include('partials/header', { title: 'Contact' }) %>
-  <section class="grid md:grid-cols-2 gap-10 items-start">
-    <div class="space-y-4">
-  <h2 class="text-3xl font-bold text-green-850">Contact Us!</h2>
-    <form class="bg-green-50 p-6 rounded shadow space-y-4">
-      <input type="text" placeholder="Your Name" class="input input-bordered w-full" />
-      <input type="email" placeholder="Your Email" class="input input-bordered w-full" />
-      <textarea placeholder="Your Message" class="textarea textarea-bordered w-full"></textarea>
+<section class="grid md:grid-cols-2 gap-10 items-start">
+  <div class="space-y-4">
+    <h2 class="text-3xl font-bold text-green-850">Contact Us!</h2>
+
+<% if (contactSuccess && contactData) { %>
+  <div class="bg-blue-100 border border-blue-600 text-blue-800 p-4 rounded my-4">
+    Thank you <strong><%= contactData.name %></strong>! Your message was received.
+  </div>
+<% } %>
+
+
+
+    <form class="bg-green-50 p-6 rounded shadow space-y-4" method="POST">
+      <input type="text" name="name" placeholder="Your Name" class="input input-bordered w-full" required />
+      <input type="email" name="email" placeholder="Your Email" class="input input-bordered w-full" required />
+      <textarea name="message" placeholder="Your Message" class="textarea textarea-bordered w-full" required></textarea>
       <button class="btn btn-success">Send Message</button>
     </form>
-    </div>
+  </div>
 
-    <div class="space-y-4 text-gray-700">
-      <h3 class="text-xl font-semibold text-green-800">Get in Touch</h3>
-      <p><strong>Phone:</strong> (123) 456-7890</p>
-      <p><strong>Email:</strong> hello@greencoffee.ca</p>
-      <p><strong>Fax:</strong> (123) 456-7891</p>
-      <p><strong>Follow us:</strong></p>
-      <div class="flex space-x-4">
-        <a href="#" class="text-green-800 hover:text-green-600">Instagram</a>
-        <a href="#" class="text-green-800 hover:text-green-600">Facebook</a>
-        <a href="#" class="text-green-800 hover:text-green-600">Twitter</a>
-      </div>
+  <div class="space-y-4 text-gray-700">
+    <h3 class="text-xl font-semibold text-green-800">Get in Touch</h3>
+    <p><strong>Phone:</strong> (123) 456-7890</p>
+    <p><strong>Email:</strong> hello@greencoffee.ca</p>
+    <p><strong>Fax:</strong> (123) 456-7891</p>
+    <p><strong>Follow us:</strong></p>
+    <div class="flex space-x-4">
+      <a href="#" class="text-green-800 hover:text-green-600">Instagram</a>
+      <a href="#" class="text-green-800 hover:text-green-600">Facebook</a>
+      <a href="#" class="text-green-800 hover:text-green-600">Twitter</a>
     </div>
-  </section>
-  <%- include('partials/footer') %>
+  </div>
+</section>
+<%- include('partials/footer') %>
