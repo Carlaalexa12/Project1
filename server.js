@@ -15,6 +15,7 @@ const eventSchema = new mongoose.Schema({
   location: String
 }, { timestamps: true });
 
+const Event = mongoose.model('Event', eventSchema);
 
 app.get('/', (req, res) => {
   res.render('home');
