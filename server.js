@@ -182,6 +182,25 @@ app.post("/addBlog", (req, res) => {
     .catch(() => res.redirect('/crud'));
 });
 
+// UPDATE - Update a blog
+app.post("/updateBlog", (req, res) => {
+  if (!req.body.title || !req.body.excerpt) {
+    res.redirect('/crud');
+    return;
+  }
+
+  Blog.updateOne(
+    { _id: req.body.updateId },
+    {
+      title: req.body.title,
+      excerpt: req.body.excerpt,
+      link: req.body.link || '#'
+    }
+  )
+    .then(() => res.redirect('/crud'))
+    .catch(() => res.redirect('/crud'));
+});
+
 // MongoDB connection and server start
 const HTTP_PORT = process.env.PORT || 4000;
 const DB = "mongodb+srv://ysmnmlkc:FfvkU2zWQFE4V864@cluster0.ze8dh1z.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
