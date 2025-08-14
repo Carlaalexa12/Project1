@@ -10,6 +10,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set("view engine", "ejs");
 app.set('views', path.join(__dirname, 'views'));
 
+// Schema and Models
+const blogSchema = new mongoose.Schema({
+  date: String,
+  title: String,
+  excerpt: String,
+  link: String
+}, { timestamps: true });
+
 const eventSchema = new mongoose.Schema({
   title: String,
   description: String,
@@ -18,6 +26,7 @@ const eventSchema = new mongoose.Schema({
   location: String
 }, { timestamps: true });
 
+const Blog = mongoose.model('Blog', blogSchema);
 const Event = mongoose.model('Event', eventSchema);
 
 app.get('/', (req, res) => {
