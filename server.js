@@ -1,10 +1,13 @@
 const express = require('express');
-const app = express();
+const mongoose = require('mongoose');
 const path = require('path');
+require('dotenv').config();
 
-app.use(express.static('public'));
+const app = express();
+
 app.use(express.urlencoded({ extended: true }));
-app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'public')));
+app.set("view engine", "ejs");
 app.set('views', path.join(__dirname, 'views'));
 
 const eventSchema = new mongoose.Schema({
