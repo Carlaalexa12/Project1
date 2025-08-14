@@ -164,6 +164,24 @@ app.get('/blog', (req, res) => {
     });
 });
 
+// CREATE - Add a new blog
+app.post("/addBlog", (req, res) => {
+  if (!req.body.title || !req.body.excerpt) {
+    res.redirect('/crud');
+    return;
+  }
+
+  const newBlog = new Blog({
+    title: req.body.title,
+    excerpt: req.body.excerpt,
+    link: req.body.link || '#'
+  });
+
+  newBlog.save()
+    .then(() => res.redirect('/crud'))
+    .catch(() => res.redirect('/crud'));
+});
+
 // MongoDB connection and server start
 const HTTP_PORT = process.env.PORT || 4000;
 const DB = "mongodb+srv://ysmnmlkc:FfvkU2zWQFE4V864@cluster0.ze8dh1z.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
