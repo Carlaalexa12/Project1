@@ -128,7 +128,12 @@ app.post("/deleteEvent", (req, res) => {
     .catch(() => res.redirect('/events'));
 });
 
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// MongoDB connection and server start
+const HTTP_PORT = process.env.PORT || 4000;
+const DB = "mongodb+srv://ysmnmlkc:FfvkU2zWQFE4V864@cluster0.ze8dh1z.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
+mongoose.connect(DB)
+  .then(() => {
+    app.listen(HTTP_PORT);
+  })
+  .catch(() => { });
