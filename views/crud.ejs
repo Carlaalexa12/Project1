@@ -219,6 +219,19 @@
         <div id="blog-tab" class="tab-content active">
             <h3 class="text-2xl font-bold text-green-900 mb-6 text-center">Blog Management</h3>
 
+            <!-- CREATE BLOG FORM -->
+            <section class="form-section">
+                <h4 class="text-xl font-semibold mb-4 text-green-900"> Add New Blog Post</h4>
+                <form action="/addBlog" method="POST" class="grid gap-4">
+                    <input type="text" name="title" placeholder="Enter blog title..." class="form-input" required>
+                    <textarea name="excerpt" placeholder="Write a brief excerpt..." class="form-input" rows="3"
+                        required></textarea>
+                    <input type="text" name="link" placeholder="Blog URL (e.g., yaseminmalkoc.com/blog/1)"
+                        class="form-input">
+                    <button type="submit" class="btn btn-green">Publish Blog Post</button>
+                </form>
+            </section>
+
             <!-- EVENTS TAB -->
             <div id="events-tab" class="tab-content">
                 <h3 class="text-2xl font-bold text-green-900 mb-6 text-center">Events Management</h3>
