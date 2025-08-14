@@ -32,6 +32,44 @@
                 </form>
             </section>
 
+            <!-- EVENTS CARDS GRID -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <% if (typeof events !=='undefined' && events.length> 0) { %>
+                    <% events.forEach((event, index)=> { %>
+                        <div class="card">
+                            <div class="stats-badge">#<%= index + 1 %>
+                            </div>
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <%= event.date %>
+                                </div>
+                            </div>
+
+                            <h4 class="card-title">
+                                <%= event.title %>
+                            </h4>
+                            <p class="card-excerpt">
+                                <%= event.description %>
+                            </p>
+
+                            <div class="space-y-2">
+                                <div class="event-time">
+                                    <%= event.time %>
+                                </div>
+                                <div class="event-location">
+                                    <%= event.location %>
+                                </div>
+                            </div>
+
+                            <div class="card-actions">
+                                <button class="btn btn-blue" onclick="toggleEditForm('event-<%= event._id %>')">
+                                    Edit
+                                </button>
+                                <button class="btn btn-red" onclick="deleteEvent('<%= event._id %>')">
+                                    Delete
+                                </button>
+                            </div>
+
 </section>
 
 <%- include('partials/footer') %>
