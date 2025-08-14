@@ -69,6 +69,35 @@
                                     Delete
                                 </button>
                             </div>
+                            <!-- HIDDEN EDIT FORM -->
+                            <div id="event-<%= event._id %>" class="hidden mt-4 p-4 bg-gray-50 rounded-lg">
+                                <form action="/updateEvent" method="POST" class="grid gap-3">
+                                    <input type="hidden" name="updateId" value="<%= event._id %>">
+                                    <input type="text" name="title" value="<%= event.title %>" class="form-input"
+                                        placeholder="Event Title">
+                                    <textarea name="description" class="form-input" placeholder="Event Description"
+                                        rows="2"><%= event.description %></textarea>
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                        <input type="text" name="date" value="<%= event.date %>" class="form-input"
+                                            placeholder="Date">
+                                        <input type="text" name="time" value="<%= event.time %>" class="form-input"
+                                            placeholder="Time">
+                                        <input type="text" name="location" value="<%= event.location %>"
+                                            class="form-input" placeholder="Location">
+                                    </div>
+                                    <button type="submit" class="btn btn-blue">Save Changes</button>
+                                </form>
+                            </div>
+                        </div>
+                        <% }) %>
+                            <% } else { %>
+                                <div class="col-span-full text-center py-12">
+                                    <div class="text-6xl mb-4"></div>
+                                    <p class="text-gray-500 text-lg">No events found. Create your first event!</p>
+                                </div>
+                                <% } %>
+            </div>
+        </div>
 
 </section>
 
