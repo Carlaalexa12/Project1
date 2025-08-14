@@ -153,6 +153,17 @@ app.get('/crud', (req, res) => {
     });
 });
 
+// READ - List all blogs
+app.get('/blog', (req, res) => {
+  Blog.find().sort({ createdAt: -1 }).exec()
+    .then((data) => {
+      res.render("blog", { blogPosts: data });
+    })
+    .catch(() => {
+      res.render("blog", { blogPosts: [] });
+    });
+});
+
 // MongoDB connection and server start
 const HTTP_PORT = process.env.PORT || 4000;
 const DB = "mongodb+srv://ysmnmlkc:FfvkU2zWQFE4V864@cluster0.ze8dh1z.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
