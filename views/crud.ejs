@@ -121,6 +121,11 @@
             event.target.classList.add('active');
         }
 
+        function toggleEditForm(elementId) {
+            const formElement = document.getElementById(elementId);
+            formElement.classList.toggle('hidden');
+        }
+
 </script>
 
 <%- include('partials/footer') %>
