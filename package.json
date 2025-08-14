@@ -20,8 +20,11 @@
   "homepage": "https://github.com/Carlaalexa12/Project1#readme",
   "description": "",
   "dependencies": {
+    "dotenv": "^17.2.1",
     "ejs": "^3.1.10",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "mongodb": "^6.18.0",
+    "mongoose": "^8.17.1"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
