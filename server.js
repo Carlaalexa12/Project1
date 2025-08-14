@@ -50,6 +50,15 @@ app.get('/testimonials', (req, res) => {
   res.render('testimonials');
 });
 
+app.get('/events', (req, res) => {
+  res.render('events');
+});
+
+app.post('/events', (req, res) => {
+  const { eventName, date } = req.body;
+  const eventData = { eventName, date };
+  res.render('events', { eventSuccess: true, eventData });
+});
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
