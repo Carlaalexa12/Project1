@@ -201,6 +201,13 @@ app.post("/updateBlog", (req, res) => {
     .catch(() => res.redirect('/crud'));
 });
 
+// DELETE - Delete a blog
+app.post("/deleteBlog", (req, res) => {
+  Blog.deleteOne({ _id: req.body.deleteId })
+    .then(() => res.redirect('/crud'))
+    .catch(() => res.redirect('/crud'));
+});
+
 // MongoDB connection and server start
 const HTTP_PORT = process.env.PORT || 4000;
 const DB = "mongodb+srv://ysmnmlkc:FfvkU2zWQFE4V864@cluster0.ze8dh1z.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
