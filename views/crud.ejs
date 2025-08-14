@@ -265,105 +265,120 @@
                                 </button>
                             </div>
 
-                            <!-- EVENTS TAB -->
-                            <div id="events-tab" class="tab-content">
-                                <h3 class="text-2xl font-bold text-green-900 mb-6 text-center">Events Management</h3>
+                            <!-- HIDDEN EDIT FORM -->
+                            <div id="blog-<%= post._id %>" class="hidden mt-4 p-4 bg-gray-50 rounded-lg">
+                                <form action="/updateBlog" method="POST" class="grid gap-3">
+                                    <input type="hidden" name="updateId" value="<%= post._id %>">
+                                    <input type="text" name="title" value="<%= post.title %>" class="form-input"
+                                        placeholder="Title">
+                                    <textarea name="excerpt" class="form-input" placeholder="Excerpt"
+                                        rows="2"><%= post.excerpt %></textarea>
+                                    <input type="text" name="link" value="<%= post.link %>" class="form-input"
+                                        placeholder="Link">
+                                    <button type="submit" class="btn btn-blue"> Save Changes</button>
+                                </form>
+                            </div>
+                        </div>
+                        <% }) %>
+                            <% } else { %>
+                                <div class="col-span-full text-center py-12">
+                                    <div class="text-6xl mb-4"></div>
+                                    <p class="text-gray-500 text-lg">No blog posts found. Create your first post!</p>
+                                </div>
+                                <% } %>
+            </div>
+        </div>
 
-                                <!-- CREATE EVENT FORM -->
-                                <section class="form-section">
-                                    <h4 class="text-xl font-semibold mb-4 text-green-900"> Add New Event</h4>
-                                    <form action="/addEvent" method="POST" class="grid gap-4">
-                                        <input type="text" name="title" placeholder="Enter event title..."
-                                            class="form-input" required>
-                                        <textarea name="description" placeholder="Describe your event..."
-                                            class="form-input" rows="3" required></textarea>
-                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                            <input type="text" name="date"
-                                                placeholder="Date (e.g., Saturday, August 14, 2025)" class="form-input"
-                                                required>
-                                            <input type="text" name="time"
-                                                placeholder="Time (e.g., 10:00 AM – 12:00 PM)" class="form-input"
-                                                required>
-                                            <input type="text" name="location" placeholder="Location" class="form-input"
-                                                required>
-                                        </div>
-                                        <button type="submit" class="btn btn-green"> Create Event</button>
-                                    </form>
-                                </section>
+        <!-- EVENTS TAB -->
+        <div id="events-tab" class="tab-content">
+            <h3 class="text-2xl font-bold text-green-900 mb-6 text-center">Events Management</h3>
 
-                                <!-- EVENTS CARDS GRID -->
-                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    <% if (typeof events !=='undefined' && events.length> 0) { %>
-                                        <% events.forEach((event, index)=> { %>
-                                            <div class="card">
-                                                <div class="stats-badge">#<%= index + 1 %>
-                                                </div>
-                                                <div class="card-header">
-                                                    <div class="card-date">
-                                                        <%= event.date %>
-                                                    </div>
-                                                </div>
+            <!-- CREATE EVENT FORM -->
+            <section class="form-section">
+                <h4 class="text-xl font-semibold mb-4 text-green-900"> Add New Event</h4>
+                <form action="/addEvent" method="POST" class="grid gap-4">
+                    <input type="text" name="title" placeholder="Enter event title..." class="form-input" required>
+                    <textarea name="description" placeholder="Describe your event..." class="form-input" rows="3"
+                        required></textarea>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <input type="text" name="date" placeholder="Date (e.g., Saturday, August 14, 2025)"
+                            class="form-input" required>
+                        <input type="text" name="time" placeholder="Time (e.g., 10:00 AM – 12:00 PM)" class="form-input"
+                            required>
+                        <input type="text" name="location" placeholder="Location" class="form-input" required>
+                    </div>
+                    <button type="submit" class="btn btn-green"> Create Event</button>
+                </form>
+            </section>
 
-                                                <h4 class="card-title">
-                                                    <%= event.title %>
-                                                </h4>
-                                                <p class="card-excerpt">
-                                                    <%= event.description %>
-                                                </p>
-
-                                                <div class="space-y-2">
-                                                    <div class="event-time">
-                                                        <%= event.time %>
-                                                    </div>
-                                                    <div class="event-location">
-                                                        <%= event.location %>
-                                                    </div>
-                                                </div>
-
-                                                <div class="card-actions">
-                                                    <button class="btn btn-blue"
-                                                        onclick="toggleEditForm('event-<%= event._id %>')">
-                                                        Edit
-                                                    </button>
-                                                    <button class="btn btn-red"
-                                                        onclick="deleteEvent('<%= event._id %>')">
-                                                        Delete
-                                                    </button>
-                                                </div>
-
-                                                <!-- HIDDEN EDIT FORM -->
-                                                <div id="event-<%= event._id %>"
-                                                    class="hidden mt-4 p-4 bg-gray-50 rounded-lg">
-                                                    <form action="/updateEvent" method="POST" class="grid gap-3">
-                                                        <input type="hidden" name="updateId" value="<%= event._id %>">
-                                                        <input type="text" name="title" value="<%= event.title %>"
-                                                            class="form-input" placeholder="Event Title">
-                                                        <textarea name="description" class="form-input"
-                                                            placeholder="Event Description"
-                                                            rows="2"><%= event.description %></textarea>
-                                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                                                            <input type="text" name="date" value="<%= event.date %>"
-                                                                class="form-input" placeholder="Date">
-                                                            <input type="text" name="time" value="<%= event.time %>"
-                                                                class="form-input" placeholder="Time">
-                                                            <input type="text" name="location"
-                                                                value="<%= event.location %>" class="form-input"
-                                                                placeholder="Location">
-                                                        </div>
-                                                        <button type="submit" class="btn btn-blue">Save Changes</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            <% }) %>
-                                                <% } else { %>
-                                                    <div class="col-span-full text-center py-12">
-                                                        <div class="text-6xl mb-4"></div>
-                                                        <p class="text-gray-500 text-lg">No events found. Create your
-                                                            first event!</p>
-                                                    </div>
-                                                    <% } %>
+            <!-- EVENTS CARDS GRID -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <% if (typeof events !=='undefined' && events.length> 0) { %>
+                    <% events.forEach((event, index)=> { %>
+                        <div class="card">
+                            <div class="stats-badge">#<%= index + 1 %>
+                            </div>
+                            <div class="card-header">
+                                <div class="card-date">
+                                    <%= event.date %>
                                 </div>
                             </div>
+
+                            <h4 class="card-title">
+                                <%= event.title %>
+                            </h4>
+                            <p class="card-excerpt">
+                                <%= event.description %>
+                            </p>
+
+                            <div class="space-y-2">
+                                <div class="event-time">
+                                    <%= event.time %>
+                                </div>
+                                <div class="event-location">
+                                    <%= event.location %>
+                                </div>
+                            </div>
+
+                            <div class="card-actions">
+                                <button class="btn btn-blue" onclick="toggleEditForm('event-<%= event._id %>')">
+                                    Edit
+                                </button>
+                                <button class="btn btn-red" onclick="deleteEvent('<%= event._id %>')">
+                                    Delete
+                                </button>
+                            </div>
+
+                            <!-- HIDDEN EDIT FORM -->
+                            <div id="event-<%= event._id %>" class="hidden mt-4 p-4 bg-gray-50 rounded-lg">
+                                <form action="/updateEvent" method="POST" class="grid gap-3">
+                                    <input type="hidden" name="updateId" value="<%= event._id %>">
+                                    <input type="text" name="title" value="<%= event.title %>" class="form-input"
+                                        placeholder="Event Title">
+                                    <textarea name="description" class="form-input" placeholder="Event Description"
+                                        rows="2"><%= event.description %></textarea>
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                        <input type="text" name="date" value="<%= event.date %>" class="form-input"
+                                            placeholder="Date">
+                                        <input type="text" name="time" value="<%= event.time %>" class="form-input"
+                                            placeholder="Time">
+                                        <input type="text" name="location" value="<%= event.location %>"
+                                            class="form-input" placeholder="Location">
+                                    </div>
+                                    <button type="submit" class="btn btn-blue">Save Changes</button>
+                                </form>
+                            </div>
+                        </div>
+                        <% }) %>
+                            <% } else { %>
+                                <div class="col-span-full text-center py-12">
+                                    <div class="text-6xl mb-4"></div>
+                                    <p class="text-gray-500 text-lg">No events found. Create your
+                                        first event!</p>
+                                </div>
+                                <% } %>
+            </div>
+        </div>
     </section>
 
     <script>
