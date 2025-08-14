@@ -29,20 +29,22 @@ const eventSchema = new mongoose.Schema({
 const Blog = mongoose.model('Blog', blogSchema);
 const Event = mongoose.model('Event', eventSchema);
 
+// ROUTES
 app.get('/', (req, res) => {
   res.render('home');
 });
-
 
 app.get('/about', (req, res) => {
   res.render('about');
 });
 
+app.get('/menu', (req, res) => {
+  res.render('menu');
+});
 
 app.get('/order', (req, res) => {
   res.render('order', { orderSuccess: false, orderData: null });
 });
-
 
 app.post('/order', (req, res) => {
   const { name, quantity } = req.body;
@@ -50,11 +52,17 @@ app.post('/order', (req, res) => {
   res.render('order', { orderSuccess: true, orderData });
 });
 
+app.get('/testimonials', (req, res) => {
+  res.render('testimonials');
+});
+
+app.get('/locations', (req, res) => {
+  res.render('locations');
+});
 
 app.get('/contact', (req, res) => {
   res.render('contact', { contactSuccess: false, contactData: null });
 });
-
 
 app.post('/contact', (req, res) => {
   const { name, message } = req.body;
@@ -62,23 +70,8 @@ app.post('/contact', (req, res) => {
   res.render('contact', { contactSuccess: true, contactData });
 });
 
-
 app.get('/career', (req, res) => {
   res.render('career');
-});
-
-app.get('/testimonials', (req, res) => {
-  res.render('testimonials');
-});
-
-app.get('/events', (req, res) => {
-  res.render('events');
-});
-
-app.post('/events', (req, res) => {
-  const { eventName, date } = req.body;
-  const eventData = { eventName, date };
-  res.render('events', { eventSuccess: true, eventData });
 });
 
 // EVENTS PAGE
@@ -138,6 +131,26 @@ app.post("/deleteEvent", (req, res) => {
   Event.deleteOne({ _id: req.body.deleteId })
     .then(() => res.redirect('/events'))
     .catch(() => res.redirect('/events'));
+});
+
+// CRUD Admin Panel
+app.get('/crud', (req, res) => {
+  Promise.all([
+    Blog.find().sort({ createdAt: -1 }).exec(),
+    Event.find().sort({ createdAt: -1 }).exec()
+  ])
+    .then(([blogData, eventData]) => {
+      res.render("crud", {
+        blogPosts: blogData,
+        events: eventData
+      });
+    })
+    .catch(() => {
+      res.render("crud", {
+        blogPosts: [],
+        events: []
+      });
+    });
 });
 
 // MongoDB connection and server start
