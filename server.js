@@ -69,6 +69,64 @@ app.post('/events', (req, res) => {
   res.render('events', { eventSuccess: true, eventData });
 });
 
+// EVENTS PAGE
+app.get('/events', (req, res) => {
+  Event.find().sort({ createdAt: -1 }).exec()
+    .then((data) => {
+      res.render("events", { events: data });
+    })
+    .catch(() => {
+      res.render("events", { events: [] });
+    });
+});
+
+// CREATE - Add a new event
+app.post("/addEvent", (req, res) => {
+  if (!req.body.title || !req.body.description) {
+    res.redirect('/events');
+    return;
+  }
+
+  const newEvent = new Event({
+    title: req.body.title,
+    description: req.body.description,
+    date: req.body.date,
+    time: req.body.time,
+    location: req.body.location
+  });
+
+  newEvent.save()
+    .then(() => res.redirect('/events'))
+    .catch(() => res.redirect('/events'));
+});
+
+// UPDATE - Update an event
+app.post("/updateEvent", (req, res) => {
+  if (!req.body.title || !req.body.description) {
+    res.redirect('/events');
+    return;
+  }
+
+  Event.updateOne(
+    { _id: req.body.updateId },
+    {
+      title: req.body.title,
+      description: req.body.description,
+      date: req.body.date,
+      time: req.body.time,
+      location: req.body.location
+    }
+  )
+    .then(() => res.redirect('/events'))
+    .catch(() => res.redirect('/events'));
+});
+
+// DELETE - Delete an event
+app.post("/deleteEvent", (req, res) => {
+  Event.deleteOne({ _id: req.body.deleteId })
+    .then(() => res.redirect('/events'))
+    .catch(() => res.redirect('/events'));
+});
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
